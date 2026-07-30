@@ -3,7 +3,7 @@ import API from "../services/api.js";
 
 export const AuthContext = createContext();
 
-function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -33,6 +33,6 @@ function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
 export default AuthProvider;

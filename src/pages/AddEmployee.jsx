@@ -1,23 +1,25 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import EmployeeForm from "../components/EmployeeForm";
+import API from "../services/api.js";
 
 function AddEmployee() {
-  const { employees, setEmployees } = useContext(AuthContext);
+  const { fetchEmployees } = useContext(AuthContext);
 
-  const addEmployee = (employee) => {
-    const newEmployee = {
-      id: Date.now(),
-      ...employee,
-    };
-    console.log("Before:", employees);
-    setEmployees([...employees, newEmployee]);
-    console.log("Adding:", newEmployee);
-    alert("Employee Added");
+  const addEmployee = async (employee) => {
+    try {
+      await API.post("/employees", employee);
+
+      await fetchEmployees();
+      alert("Employee Added Successfully");
+    } catch (error) {
+      console.log(error);
+      alert("Failed to add employee");
+    }
   };
 
   return (
-    <div>
+    <div className="container mt-4">
       <h2 className="mb-4">Add Employee</h2>
 
       <EmployeeForm onSubmit={addEmployee} />

@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext.jsx";
-import EmployeeCard from "../components/EmployeeCard.jsx";
-import Loader from "../components/Loader.jsx";
+import { AuthContext } from "../context/AuthContext";
+import EmployeeCard from "../components/EmployeeCard";
+import Loader from "../components/Loader";
 
-function Dashboard() {
+const Dashboard = () => {
   const { employees, loading } = useContext(AuthContext);
 
   if (loading) {
@@ -11,14 +11,18 @@ function Dashboard() {
   }
 
   return (
-    <div>
-      <h2 className="mb-4">Employee Dashboard</h2>
+    <div className="container mt-4">
+      <h2>Dashboard</h2>
 
-      {employees.map((employee) => (
-        <EmployeeCard key={employee._id} employee={employee} />
-      ))}
+      <div className="row">
+        {employees.map((employee) => (
+          <div className="col-md-4 mb-3" key={employee._id}>
+            <EmployeeCard employee={employee} />
+          </div>
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default Dashboard;

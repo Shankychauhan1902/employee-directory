@@ -1,6 +1,6 @@
 import Employee from "../models/Employee.js";
 
-export const getEmployees = async (requestAnimationFrame, res) => {
+export const getEmployees = async (req, res) => {
   try {
     const employees = await Employee.find();
     res.status(200).json({
@@ -24,9 +24,8 @@ export const addEmployee = async (req, res) => {
       employee,
     });
   } catch (error) {
-    res.status(201).json({
+    res.status(500).json({
       success: false,
-      message: false,
       message: error.message,
     });
   }

@@ -1,11 +1,18 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 function EmployeeForm({ onSubmit, initialData = {} }) {
-  const [name, setName] = useState(initialData.name || "");
-  const [email, setEmail] = useState(initialData.email || "");
-  const [department, setDepartment] = useState(initialData.department || "");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [department, setDepartment] = useState("");
 
   const nameRef = useRef();
+
+  useEffect(() => {
+    setName(initialData.name || "");
+    setEmail(initialData.email || "");
+    setDepartment(initialData.department || "");
+  }, [initialData]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -19,12 +26,12 @@ function EmployeeForm({ onSubmit, initialData = {} }) {
       email,
       department,
     });
-
-    setName("");
-    setEmail("");
-    setDepartment("");
-
-    nameRef.current.focus();
+    if (!initialData._id) {
+      setName("");
+      setEmail("");
+      setDepartment("");
+      nameRef.current.focus();
+    }
   };
 
   return (
@@ -58,7 +65,9 @@ function EmployeeForm({ onSubmit, initialData = {} }) {
         />
       </div>
 
-      <button className="btn btn-primary">Save Employee</button>
+      <button className="btn btn-primary">
+        {initialData._id ? "Update Employee" : "Save Employee"}
+      </button>
     </form>
   );
 }

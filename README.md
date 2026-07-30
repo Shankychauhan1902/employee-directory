@@ -1,16 +1,126 @@
-# React + Vite
+# Employee Directory
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack Employee Directory web application built using the MERN stack. The application allows users to securely manage employee records with authentication and CRUD operations.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- User Registration
+- User Login with JWT Authentication
+- Password Hashing using bcrypt
+- Add Employee
+- View Employees
+- Update Employee
+- Delete Employee
+- Protected Routes
+- Responsive UI using Bootstrap
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Frontend
 
-## Expanding the ESLint configuration
+- React
+- React Router
+- Axios
+- Context API
+- Bootstrap
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB Atlas
+- Mongoose
+- JWT
+- bcryptjs
+
+## Project Structure
+
+```
+employee-directory
+│
+├── server
+│   ├── controllers
+│   ├── models
+│   ├── routes
+│   ├── config
+│   └── server.js
+│
+├── src
+│   ├── components
+│   ├── context
+│   ├── pages
+│   ├── services
+│   └── App.jsx
+```
+
+## Installation
+
+### Clone the repository
+
+```bash
+git clone <repository-url>
+```
+
+### Install frontend dependencies
+
+```bash
+npm install
+```
+
+### Install backend dependencies
+
+```bash
+cd server
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file inside the `server` folder.
+
+```
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+```
+
+### Start Backend
+
+```bash
+cd server
+npm run dev
+```
+
+### Start Frontend
+
+```bash
+npm run dev
+```
+
+## API Endpoints
+
+### Authentication
+
+- POST `/api/auth/register`
+- POST `/api/auth/login`
+
+### Employees
+
+- GET `/api/employees`
+- GET `/api/employees/:id`
+- POST `/api/employees`
+- PUT `/api/employees/:id`
+- DELETE `/api/employees/:id`
+
+## Future Improvements
+
+- Search Employees
+- Pagination
+- Profile Management
+- Role-Based Authorization
+- Image Upload
+- Dark Mode
+
+## Author
+
+**Sankit Chauhan**

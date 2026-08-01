@@ -3,6 +3,7 @@ import EmployeeForm from "../components/EmployeeForm";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 import API from "../services/api";
+import { toast } from "react-toastify";
 
 function EditEmployee() {
   const { id } = useParams();
@@ -28,11 +29,11 @@ function EditEmployee() {
     try {
       await API.put(`/employees/${id}`, data);
       await fetchEmployees();
-      alert("Employee Updated Successfully");
+      toast.success("Employee Updated Successfully");
       navigate("/dashboard");
     } catch (error) {
       console.log(error);
-      alert("Failed to update employee");
+      toast.error("Failed to update employee");
     }
   };
 

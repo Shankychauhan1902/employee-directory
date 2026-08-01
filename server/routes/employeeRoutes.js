@@ -1,4 +1,5 @@
 import express from "express";
+import protect from "../middleware/authMiddleware.js";
 
 import {
   getEmployees,
@@ -10,10 +11,10 @@ import {
 
 const router = express.Router();
 
-router.get("/", getEmployees);
-router.get("/:id", getEmployeeById);
-router.post("/", addEmployee);
-router.put("/:id", updateEmployee);
-router.delete("/:id", deleteEmployee);
+router.get("/", protect, getEmployees);
+router.get("/:id", protect, getEmployeeById);
+router.post("/", protect, addEmployee);
+router.put("/:id", protect, updateEmployee);
+router.delete("/:id", protect, deleteEmployee);
 
 export default router;

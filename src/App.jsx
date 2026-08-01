@@ -7,6 +7,7 @@ import Profile from "./pages/Profile";
 import AddEmployee from "./pages/AddEmployee";
 import EditEmployee from "./pages/EditEmployee";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </BrowserRouter>

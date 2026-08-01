@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
-function EmployeeForm({ onSubmit, initialData = {} }) {
+function EmployeeForm({ onSubmit, initialData }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [department, setDepartment] = useState("");
@@ -8,16 +9,18 @@ function EmployeeForm({ onSubmit, initialData = {} }) {
   const nameRef = useRef();
 
   useEffect(() => {
-    setName(initialData.name || "");
-    setEmail(initialData.email || "");
-    setDepartment(initialData.department || "");
+    if (initialData) {
+      setName(initialData.name || "");
+      setEmail(initialData.email || "");
+      setDepartment(initialData.department || "");
+    }
   }, [initialData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!name || !email || !department) {
-      alert("All field are required");
+      toast.error("All field are required");
       return;
     }
 
@@ -26,7 +29,7 @@ function EmployeeForm({ onSubmit, initialData = {} }) {
       email,
       department,
     });
-    if (!initialData._id) {
+    if (!initialData?._id) {
       setName("");
       setEmail("");
       setDepartment("");
@@ -66,7 +69,7 @@ function EmployeeForm({ onSubmit, initialData = {} }) {
       </div>
 
       <button className="btn btn-primary">
-        {initialData._id ? "Update Employee" : "Save Employee"}
+        {initialData?._id ? "Update Employee" : "Save Employee"}
       </button>
     </form>
   );

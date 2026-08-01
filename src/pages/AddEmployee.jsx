@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import EmployeeForm from "../components/EmployeeForm";
 import API from "../services/api.js";
+import { toast } from "react-toastify";
 
 function AddEmployee() {
   const { fetchEmployees } = useContext(AuthContext);
@@ -11,10 +12,10 @@ function AddEmployee() {
       await API.post("/employees", employee);
 
       await fetchEmployees();
-      alert("Employee Added Successfully");
+      toast.success("Employee Added Successfully");
     } catch (error) {
       console.log(error);
-      alert("Failed to add employee");
+      toast.error("Failed to add employee");
     }
   };
 
